@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 import datetime
 
-from django.forms.widgets import Widget, TextInput, MultiWidget, Select, DateInput
+from django.forms.widgets import TextInput, MultiWidget, DateInput
 from django.utils.safestring import mark_safe
+from django.conf import settings
 
 # Python 2.3 fallbacks
 try:
@@ -26,7 +27,7 @@ class BRJsDateWidget(DateInput):
 
     class Media:
         css = {
-           'all': ('css/south-street/jquery-ui-1.7.2.custom.css',)
+            'all': (getattr(settings, 'JQUERY_UI_THEME', '/static/css/Aristo/jquery-ui-1.8.7.custom.css'),)
         }
 
         js = ('js/jquery-ui-1.7.2.custom.min.js', 'js/ui.datepicker-pt-BR.js', 'js/init_datepicker.js',)
