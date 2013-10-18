@@ -31,7 +31,7 @@ class BRDecimalField(DecimalField):
     widget = BRDecimalWidget
 
     def clean(self, value):
-        value = str(value).replace('.', '').replace(',', '.')
+        value = unicode(value).replace('.', '').replace(',', '.')
         return super(BRDecimalField, self).clean(value)
 
 
@@ -39,7 +39,7 @@ class BRFloatField(FloatField):
     widget = BRFloatWidget
 
     def clean(self, value):
-        value = value.replace('.', '').replace(',', '.')
+        value = unicode(value).replace('.', '').replace(',', '.')
         return super(BRFloatField, self).clean(value)
 
 
