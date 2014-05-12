@@ -30,7 +30,7 @@ class BRJsDateWidget(DateInput):
             'all': (getattr(settings, 'JQUERY_UI_THEME', '/static/css/Aristo/jquery-ui-1.8.7.custom.css'),)
         }
 
-        js = ('js/jquery-ui-1.7.2.custom.min.js', 'js/ui.datepicker-pt-BR.js', 'js/init_datepicker.js',)
+        js = ('js/jquery-ui.js', 'js/ui.datepicker-pt-BR.js', 'js/init_datepicker.js',)
 
 
 class BRDecimalWidget(TextInput):
