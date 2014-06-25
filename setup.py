@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
- 
+
 setup(
     name='django-localbr',
-    version='0.1',
+    version='1.0',
     description='Portuguese Brazil Django localization helpers',
     long_description=open('README.md').read(),
     author='ZNC Sistemas',
