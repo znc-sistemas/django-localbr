@@ -7,7 +7,7 @@ from django.forms.fields import EMPTY_VALUES
 from django.utils.safestring import mark_safe
 from django.forms.fields import Field
 from django.contrib.gis.geos import Point
-from django.contrib.localflavor.br import forms as lfbr_forms
+from localflavor.br import forms as lfbr_forms
 
 import re
 

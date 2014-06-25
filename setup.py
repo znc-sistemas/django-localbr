@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from setuptools import setup, find_packages
- 
+
 setup(
     name='django-localbr',
-    version='0.1',
+    version='1.0',
     description='Portuguese Brazil Django localization helpers',
     long_description=open('README.md').read(),
     author='ZNC Sistemas',
     author_email='contato@znc.com.br',
     maintainer='ZNC Sistemas',
     maintainer_email='contato@znc.com.br',
+    install_requires=['localflavor>=1.0'],
     url='https://github.com/znc-sistemas/django-localbr',
     packages=find_packages(),
     include_package_data=True,
