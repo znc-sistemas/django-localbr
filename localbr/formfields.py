@@ -120,10 +120,9 @@ class PointField(MultiValueField):
 
 class BRCPFField(lfbr_forms.BRCPFField):
 
-    def __init__(self, always_return_formated=False, return_format=u'%s.%s.%s-%s', *args, **kwargs):
+    def __init__(self, always_return_formated=False, return_format=u'%s.%s.%s-%s', help_text=u'ex. 000.000.000-00', *args, **kwargs):
         self.always_return_formated, self.return_format = always_return_formated, return_format
-        super(BRCPFField, self).__init__(*args, **kwargs)
-        self.help_text = u'ex. 000.000.000-00'
+        super(BRCPFField, self).__init__(help_text=help_text, *args, **kwargs)
 
     def clean(self, value):
         value = super(BRCPFField, self).clean(value)
@@ -140,14 +139,12 @@ class BRCPFField(lfbr_forms.BRCPFField):
 
 class BRCNPJField(lfbr_forms.BRCNPJField):
 
-    def __init__(self, always_return_formated=False, return_format=u'%s.%s.%s/%s-%s', *args, **kwargs):
+    def __init__(self, always_return_formated=False, return_format=u'%s.%s.%s/%s-%s', help_text=u'00.000.000/0000-00', *args, **kwargs):
         self.always_return_formated, self.return_format = always_return_formated, return_format
-        super(BRCNPJField, self).__init__(*args, **kwargs)
-        self.help_text = u'ex. 000.000.000-00'
+        super(BRCNPJField, self).__init__(help_text=help_text, *args, **kwargs)
 
     def clean(self, value):
         value = super(BRCNPJField, self).clean(value)
-        self.help_text = u'00.000.000/0000-00'
 
         if value not in EMPTY_VALUES:
             if self.always_return_formated:
