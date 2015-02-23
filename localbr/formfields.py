@@ -147,6 +147,11 @@ class BRCNPJField(lfbr_forms.BRCNPJField):
     def clean(self, value):
         value = super(BRCNPJField, self).clean(value)
 
+        # exclui CNPJ com digitos 0s, 1s, ..., 9s
+        for v in range(0, 10):
+            if value == str(v) * 14:
+                raise ValidationError(self.error_messages['invalid'])
+
         if value not in EMPTY_VALUES:
             if self.always_return_formated:
                 m = re.match(r'(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})',
