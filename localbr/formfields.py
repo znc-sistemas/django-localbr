@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 
+from datetime import date
+
 from django.forms import FloatField, DecimalField, MultiValueField, ValidationError
 from django.utils.encoding import smart_unicode
-from widgets import BRDecimalWidget, PointWidget, BRFloatWidget
+from widgets import BRDecimalWidget, PointWidget, BRFloatWidget, BRJsDateWidget
 from django.forms.fields import EMPTY_VALUES
 from django.utils.safestring import mark_safe
 from django.forms.fields import Field
@@ -10,6 +12,28 @@ from django.contrib.gis.geos import Point
 from localflavor.br import forms as lfbr_forms
 
 import re
+
+
+class BRDateField(Field):
+
+    widget = BRJsDateWidget
+
+    def clean(self, value):
+        super(BRDateField, self).clean(value)
+        if value in EMPTY_VALUES:
+            return u''
+
+        splitted = value.split('/')
+
+        try:
+            day = int(splitted[0])
+            month = int(splitted[1])
+            year = int(splitted[2])
+            the_date = date(year, month, day)
+            the_date.strftime('%d/%m/%y')
+            return the_date
+        except:
+            raise ValidationError(u'Esta data parecer estar inválida! Use o formato DD/MM/AAAA')
 
 
 class BRPhoneNumberField(Field):
