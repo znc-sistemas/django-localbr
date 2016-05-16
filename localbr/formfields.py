@@ -21,7 +21,7 @@ class BRDateField(Field):
     def clean(self, value):
         super(BRDateField, self).clean(value)
         if value in EMPTY_VALUES:
-            return u''
+            return None
 
         splitted = value.split('/')
 
