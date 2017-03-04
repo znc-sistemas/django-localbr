@@ -3,8 +3,17 @@
 from datetime import date
 
 from django.forms import FloatField, DecimalField, MultiValueField, ValidationError
-from django.utils.encoding import smart_unicode
-from widgets import BRDecimalWidget, PointWidget, BRFloatWidget, BRJsDateWidget
+
+try:
+    from django.utils.encoding import smart_char as smart_char
+except:
+    from django.utils.encoding import smart_str  as smart_char
+
+try:
+    from widgets import BRDecimalWidget, PointWidget, BRFloatWidget
+except:
+    from localbr.widgets import BRDecimalWidget, PointWidget, BRFloatWidget
+
 from django.forms.fields import EMPTY_VALUES
 from django.utils.safestring import mark_safe
 from django.forms.fields import Field
@@ -42,7 +51,7 @@ class BRPhoneNumberField(Field):
         super(BRPhoneNumberField, self).clean(value)
         if value in EMPTY_VALUES:
             return u''
-        value = re.sub('(\(|\)|\s+)', '', smart_unicode(value))
+        value = re.sub('(\(|\)|\s+)', '', smart_char(value))
         m = re.compile(
             r'^(\d{2})[-\.]?((\d{5})|(\d{4}))[-\.]?(\d{4})$').search(value)
         if m:
