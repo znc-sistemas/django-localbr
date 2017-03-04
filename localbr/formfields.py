@@ -5,7 +5,7 @@ from datetime import date
 from django.forms import FloatField, DecimalField, MultiValueField, ValidationError
 
 try:
-    from django.utils.encoding import smart_char as smart_char
+    from django.utils.encoding import smart_unicode as smart_char
 except:
     from django.utils.encoding import smart_str  as smart_char
 
