@@ -10,9 +10,10 @@ except:
     from django.utils.encoding import smart_str  as smart_char
 
 try:
-    from widgets import BRDecimalWidget, PointWidget, BRFloatWidget
+    from widgets import BRDecimalWidget, PointWidget, BRFloatWidget, BRJsDateWidget
 except:
-    from localbr.widgets import BRDecimalWidget, PointWidget, BRFloatWidget
+    from localbr.widgets import BRDecimalWidget, PointWidget, BRFloatWidget, BRJsDateWidget
+
 
 from django.forms.fields import EMPTY_VALUES
 from django.utils.safestring import mark_safe
@@ -64,7 +65,10 @@ class BRDecimalField(DecimalField):
     widget = BRDecimalWidget
 
     def clean(self, value):
-        value = unicode(value).replace('.', '').replace(',', '.')
+        try:
+            value = unicode(value).replace('.', '').replace(',', '.')
+        except:  # python 3
+            value = str(value).replace('.', '').replace(',', '.')
         return super(BRDecimalField, self).clean(value)
 
 
@@ -72,7 +76,10 @@ class BRFloatField(FloatField):
     widget = BRFloatWidget
 
     def clean(self, value):
-        value = unicode(value).replace('.', '').replace(',', '.')
+        try:
+            value = unicode(value).replace('.', '').replace(',', '.')
+        except:  # python 3
+            value = str(value).replace('.', '').replace(',', '.')
         return super(BRFloatField, self).clean(value)
 
 
