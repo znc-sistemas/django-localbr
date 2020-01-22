@@ -16,7 +16,7 @@ class BRJsDateWidget(DateInput):
     """
     Renders a text for input and a jscalendar to select dates
     """
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         output = []
         textinput = TextInput(attrs={"class": "dateselector"})
         if isinstance(value, datetime.datetime) or isinstance(value, datetime.date):
@@ -35,7 +35,7 @@ class BRJsDateWidget(DateInput):
 
 class BRDecimalWidget(TextInput):
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if isinstance(value, Decimal):
             value = str(value).replace('.', ',')
         return super(BRDecimalWidget, self).render(name, value, attrs)
@@ -43,7 +43,7 @@ class BRDecimalWidget(TextInput):
 
 class BRFloatWidget(TextInput):
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         if isinstance(value, float):
             value = "%.2f" % value
             value = value.replace('.', ',')
