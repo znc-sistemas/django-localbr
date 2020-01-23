@@ -10,7 +10,7 @@ setup(
     author_email='contato@znc.com.br',
     maintainer='ZNC Sistemas',
     maintainer_email='contato@znc.com.br',
-    install_requires=['django-localflavor==1.0'],
+    install_requires=['django-localflavor>=1.0'],
     url='https://github.com/znc-sistemas/django-localbr',
     packages=find_packages(),
     include_package_data=True,
