@@ -15,7 +15,7 @@ except:
     from localbr.widgets import BRDecimalWidget, PointWidget, BRFloatWidget, BRJsDateWidget
 
 
-from django.forms.fields import EMPTY_VALUES
+from django.core.validators import EMPTY_VALUES
 from django.utils.safestring import mark_safe
 from django.forms.fields import Field
 from django.contrib.gis.geos import Point
